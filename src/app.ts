@@ -5,9 +5,9 @@ import http from 'http';
 const server = http.createServer(app);
 import { Server } from "socket.io";
 const io = new Server(server, {
-    allowRequest: (req, callback) => {
-      const noOriginHeader = req.headers.origin === undefined;
-      callback(null, noOriginHeader);
+    cors: {
+      origin: "http://localhost:3000/",
+      methods: ["GET", "POST"]
     }
   });
 const port = 3000;
