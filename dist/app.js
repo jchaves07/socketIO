@@ -10,9 +10,9 @@ const http_1 = __importDefault(require("http"));
 const server = http_1.default.createServer(app);
 const socket_io_1 = require("socket.io");
 const io = new socket_io_1.Server(server, {
-    allowRequest: (req, callback) => {
-        const noOriginHeader = req.headers.origin === undefined;
-        callback(null, noOriginHeader);
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
     }
 });
 const port = 3000;
