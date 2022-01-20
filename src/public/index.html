@@ -25,6 +25,9 @@
   var socket = io();
   var form = document.getElementById('form');
   var input = document.getElementById('input');
+  socket.on('probando api emisor', function(msg) {
+    alert(JSON.stringify(msg))
+  });
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
