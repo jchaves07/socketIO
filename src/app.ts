@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 const app = express();
 import http from 'http';
 const server = http.createServer(app);
@@ -6,6 +7,7 @@ import { Server } from "socket.io";
 const io = new Server(server);
 const port = 3000;
 
+app.use(cors());
 app.get('/', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
