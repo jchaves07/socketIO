@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 const app = express();
 import http from 'http';
 const server = http.createServer(app);
@@ -13,22 +14,19 @@ const io = new Server(server, {
 const port = 3000;
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.get('/', (req, res) => {
 
 
     res.sendFile(__dirname + '/public/index.html');
   });
-  app.get('/test', (req, res) => {
-    io.emit('probando api emisor', { valor: '111' });
+  app.post('/test', (req, res) => {
+    io.emit('probando api emisor', req.body);
     res.sendStatus(200);
   });
   
-  io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      console.log('message: ' + msg);
-      socket.broadcast.emit('hola' + msg);
-    });
-  });
+
   server.listen(port, () => {
     console.log('listening on *:3000');
   });
