@@ -22,7 +22,7 @@
     </form>
     <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io();
+  var socket = io("http://chat.crpyme.com/");
   var form = document.getElementById('form');
   var input = document.getElementById('input');
   socket.on('probando api emisor', function(msg) {
